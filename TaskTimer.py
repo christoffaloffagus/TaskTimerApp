@@ -82,6 +82,9 @@ class mainWindow(object):
         self.w = PopupWindow(self.master)
         self.start_task_btn['state'] = 'disabled'
         self.master.wait_window(self.w.top)
+        if 'value' not in vars(self.w):
+            self.start_task_btn['state'] = 'normal'
+            return
         self.timer = time.time()
         self.start_time = time.ctime()
         self.stop_task_btn['state'] = 'normal'
