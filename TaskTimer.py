@@ -51,18 +51,18 @@ class mainWindow(object):
         days = current_time // 86400
         if days != 0:
             current_time -= 86400 * days
-            duration += f'{days} {"Day" if days == 1 else "Days"} '
+            duration += f'{int(days)} {"Day" if days == 1 else "Days"} '
 
         hours = current_time // 3600
         if hours != 0:
-            duration += f'{hours} {"Hour" if hours == 1 else "Hours"} '
+            duration += f'{int(hours)} {"Hour" if hours == 1 else "Hours"} '
             current_time -= 3600 * hours
         elif duration:
             duration += '0 hours '
 
         mins = current_time // 60
         if mins != 0:
-            duration += f'{mins} {"Minute" if mins == 1 else "Minutes"} '
+            duration += f'{int(mins)} {"Minute" if mins == 1 else "Minutes"} '
             current_time -= 60 * mins
         elif duration:
             duration += '0 Minutes '
@@ -91,7 +91,6 @@ class mainWindow(object):
         duration = self._get_duration(self.timer, time.time())
         with open('Tasks.txt', 'a+') as f:
             f.write(f'Task: {self.w.value}\n')
-            f.write(f'{"-" * (len(self.w.value) + 6)}\n')
             f.write(f'Started: {self.start_time}\n')
             f.write(f'Stopped: {stopped}\n')
             f.write(f'Duration: {duration}\n\n')
